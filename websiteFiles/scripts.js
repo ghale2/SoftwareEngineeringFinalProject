@@ -1,5 +1,5 @@
 pantry = [];
-ingredient = {name: "", quantity: 0, expiration: "", category: "", notes: "", isOpened: false};
+const protoItem = {name: "", quantity: 0, expiration: "", category: "", notes: "", isOpened: false};
 date = new Date();
 //ingredients = [];
 //ingredients.push("chicken");
@@ -15,24 +15,34 @@ function sortbyDate(a,b) {
   var dateB = new Date(b.expiration);
   return dateA - dateB;
 }
+form = document.getElementById("itemForm");
 function addToPantry() {
-  ingredient.name = document.getElementById("name").value;
-  ingredient.quantity = document.getElementById("quantity").value;
-  ingredient.expiration = document.getElementById("expiration").value;
-  ingredient.category = document.getElementById("category").value;
-  ingredient.notes = document.getElementById("notes").value;
-  ingredient.isOpened = document.getElementById("isOpened").checked;
-  pantry.push(ingredient);
+  item1 = Object.create(protoItem);
+  item1.name = document.getElementById("name").value;
+  item1.quantity = document.getElementById("quantity").value;
+  item1.expiration = document.getElementById("expiration").value;
+  item1.category = document.getElementById("category").value;
+  item1.notes = document.getElementById("notes").value;
+  item1.isOpened = document.getElementById("isOpened").checked;
+  console.log(item1);
+  pantry.push(item1);
   pantry.sort(sortbyDate);
-  document.getElementById("itemForm").reset();
+  form.reset();
   document.getElementById("confirmation").classList.remove("hidden");
   setTimeout(() => {
     document.getElementById("confirmation").classList.add("hidden");
   }, 3000); 
-  console.log(ingredient);
 }
-//const btn = document.getElementById("addButton");
-//btn.addEventListener("click", addToPantry);
+form.addEventListener('submit', function(event) {
+  // Now this is completely standard and safe from deprecation warnings
+  event.preventDefault();
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+  addToPantry();
+});
+
 function removeItem() {
   var item = document.getElementById("itemName").value;
   var index = pantry.findIndex(function(pantryItem) {
@@ -51,8 +61,21 @@ function showPantry() {
     pantryList.appendChild(li);
   }
 }
-//const btn2 = document.getElementById("show");
-//btn2.addEventListener("click", showPantry);
+function savePantryToCookie() {
+  var pantryString = JSON.stringify(pantry);
+  document.cookie = "pantry=" + pantryString + "; path=/";
+}
+function loadPantryFromCookie() {
+  var cookies = document.cookie.split("; ");
+  for (var i = 0; i < cookies.length; i++) {
+    var cookie = cookies[i].trim();
+    if (cookie.indexOf("pantry=") === 0) {
+      var pantryString = cookie.substring(7);
+      pantry = JSON.parse(pantryString);
+      break;
+    }
+  }
+}
 // each user's pantry is going to be stored as a list/array of objects,
 //  where each object has keys for the item name, quantity, expiration date, category, notes, and opened status.
 //  The list will be stored in a cookie, and the cookie will be updated whenever

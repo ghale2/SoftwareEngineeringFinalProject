@@ -6,10 +6,10 @@
   <title>Add Item</title>
 <h1>Add Item to Pantry</h1>
 <form id="itemForm">
-  <input type="text" id="name" placeholder="Enter ingredient or item name" />
-  <input type="number" id="quantity" placeholder="Enter quantity" />
+  <input type="text" id="name" placeholder="Enter ingredient or item name" required />
+  <input type="number" id="quantity" placeholder="Enter quantity" required />
   <input type="date" id="expiration" placeholder="Enter expiration date format: YYYY-MM-DD. Enter 01 for day if not shown" />
-  <select id="category">
+  <select id="category" required>
     <option value="">Select a category</option>
     <option value="produce">Produce</option>
     <option value="dairy">Dairy</option>
@@ -20,7 +20,15 @@
   <textarea id="notes" placeholder="Enter notes"></textarea>
   <label>
     <input type="checkbox" id="isOpened"/>Opened</label>
+    <button id="submit" type="submit">Add Item</button>
 </form>
-<button id="addButton">Add Item</button>
+
+<!-- DEBUGGING BUTTONS -->
+<button id="removeButton" onclick="removeItem()">Remove Item</button>
+<button id="saveButton" onclick="savePantryToCookie()">Save Pantry</button>
+<button id="loadButton" onclick="loadPantryFromCookie()">Load Pantry</button>
+<button id="showButton" onclick="showPantry()">Show Pantry</button>
+<ul id="pantryList"></ul>
+
 <button onclick="window.location.href='../index.html'">Back to Home</button>
 <div id="confirmation" class="hidden">Item added to pantry!</div>
