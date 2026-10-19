@@ -5,17 +5,17 @@ date = new Date();
 //ingredients.push("chicken");
 //ingredients.push("rice");
 
-window.searchRecipes = function() {
+function searchRecipes() {
   searchTerm = ("site:allrecipes.com "+pantry.get(0).name);
   var searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(searchTerm);
   window.open(searchUrl, "_blank");
 }
-sortbyDate = function(a,b) {
+function sortbyDate(a,b) {
   var dateA = new Date(a.expiration);
   var dateB = new Date(b.expiration);
   return dateA - dateB;
 }
-window.addToPantry = function() {
+function addToPantry() {
   ingredient.name = document.getElementById("name").value;
   ingredient.quantity = document.getElementById("quantity").value;
   ingredient.expiration = document.getElementById("expiration").value;
@@ -31,9 +31,9 @@ window.addToPantry = function() {
   }, 3000); 
   console.log(ingredient);
 }
-const btn = document.getElementById("addButton");
-btn.addEventListener("click", addToPantry);
-window.removeItem = function() {
+//const btn = document.getElementById("addButton");
+//btn.addEventListener("click", addToPantry);
+function removeItem() {
   var item = document.getElementById("itemName").value;
   var index = pantry.findIndex(function(pantryItem) {
     return pantryItem.name === item;
@@ -42,7 +42,7 @@ window.removeItem = function() {
     pantry.splice(index, 1);
   }
 }
-window.showPantry = function() {
+function showPantry() {
   var pantryList = document.getElementById("pantryList");
   pantryList.innerHTML = "";
   for (var i = 0; i < pantry.length; i++) {
@@ -51,8 +51,8 @@ window.showPantry = function() {
     pantryList.appendChild(li);
   }
 }
-const btn2 = document.getElementById("show");
-btn2.addEventListener("click", showPantry);
+//const btn2 = document.getElementById("show");
+//btn2.addEventListener("click", showPantry);
 // each user's pantry is going to be stored as a list/array of objects,
 //  where each object has keys for the item name, quantity, expiration date, category, notes, and opened status.
 //  The list will be stored in a cookie, and the cookie will be updated whenever
