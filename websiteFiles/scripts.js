@@ -28,9 +28,9 @@ function addToPantry() {
   pantry.push(item1);
   pantry.sort(sortbyDate);
   form.reset();
-  document.getElementById("confirmation").classList.remove("hidden");
+  document.getElementById("itemConf").classList.remove("hidden");
   setTimeout(() => {
-    document.getElementById("confirmation").classList.add("hidden");
+    document.getElementById("itemConf").classList.add("hidden");
   }, 3000); 
 }
 form.addEventListener('submit', function(event) {
@@ -63,7 +63,13 @@ function showPantry() {
 }
 function savePantryToCookie() {
   var pantryString = JSON.stringify(pantry);
-  document.cookie = "pantry=" + pantryString + "; path=/";
+  console.log("Saving pantry to cookie: " + pantryString);
+  document.cookie = "pantry=" + pantryString + "; path=/;";
+  console.log("Cookie saved: " + document.cookie);
+  document.getElementById("cookieSaveConf").classList.remove("hidden");
+  setTimeout(() => {
+    document.getElementById("cookieSaveConf").classList.add("hidden");
+  }, 3000); 
 }
 function loadPantryFromCookie() {
   var cookies = document.cookie.split("; ");
@@ -75,6 +81,10 @@ function loadPantryFromCookie() {
       break;
     }
   }
+  document.getElementById("cookieLoadConf").classList.remove("hidden");
+  setTimeout(() => {
+    document.getElementById("cookieLoadConf").classList.add("hidden");
+  }, 3000); 
 }
 // each user's pantry is going to be stored as a list/array of objects,
 //  where each object has keys for the item name, quantity, expiration date, category, notes, and opened status.
