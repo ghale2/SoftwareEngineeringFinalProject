@@ -5,10 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Add Item</title>
 <h1>Add Item to Pantry</h1>
+
 <form id="itemForm">
-  <input type="text" id="name" placeholder="Enter ingredient or item name" required />
-  <input type="number" id="quantity" placeholder="Enter quantity" required />
-  <input type="date" id="expiration" placeholder="Enter expiration date format: YYYY-MM-DD. Enter 01 for day if not shown" />
+    <label for="name">Name:</label>
+  <input type="text" id="name" placeholder="Enter ingredient or item name" required /><br>
+  <label for="quantity">Quantity:</label>
+  <input type="number" id="quantity" placeholder="Enter quantity" required /><br>
+  <label for="expiration">Expiration date. Enter 01 for day if not shown </label>
+  <input type="date" id="expiration"/><br>
+  <label for="category">Category:</label>
   <select id="category" required>
     <option value="">Select a category</option>
     <option value="produce">Produce</option>
@@ -16,18 +21,17 @@
     <option value="meat">Meat</option>
     <option value="grains">Grains</option>
     <option value="other">Other</option>
-  </select>
-  <textarea id="notes" placeholder="Enter notes"></textarea>
-  <label>
-    <input type="checkbox" id="isOpened"/>Opened</label>
+  </select><br>
+  <label for="notes">Notes:</label>
+  <textarea id="notes" placeholder="Enter notes"></textarea><br>
+  <label for="isOpened">Opened:</label>
+    <input type="checkbox" id="isOpened"/><br>
     <button id="submit" type="submit">Add Item</button>
 </form>
 
-<!-- DEBUGGING BUTTONS -->
-<button id="removeButton" onclick="removeItem()">Remove Item</button>
-<button id="saveButton" onclick="savePantryToCookie()">Save Pantry</button>
-<button id="loadButton" onclick="loadPantryFromCookie()">Load Pantry</button>
-<button id="showButton" onclick="showPantry()">Show Pantry</button>
+
+
+<label><br><strong>Current Pantry Contents</strong></label>
 <ul id="pantryList"></ul>
 
 <button onclick="window.location.href='../index.html'">Back to Home</button>
