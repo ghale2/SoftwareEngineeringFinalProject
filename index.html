@@ -1,11 +1,23 @@
 <html lang="en">
-  <link rel="stylesheet" href="website_files/styles.css" />
+  <link rel="stylesheet" href="websiteFiles/styles.css" />
+  <script src="websiteFiles/scripts.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>This is the pantry tracker website home page.</title>
   <head>
     <h1>Welcome to the Pantry Tracker Website</h1>
     <h2>Track your pantry items easily and efficiently!</h2>
+    <h3>This is a test of the recipe search function</h3>
+    <!-- <input type="text" id="itemInput" placeholder="Enter an ingredient" /> -->
+
+    <button id="add" onclick="window.location.href='websitePages/addItem.html'">Add Item</button>
+    <button id="remove" onclick="removeItem()">Remove Item</button>
+    <button id="searchButton" onclick="searchRecipes()">Search Recipes</button>
+    <button id="show" onclick="showPantry()">Show Pantry</button>
+    <ul id="pantryList"></ul>
+    <!--<script async src="https://cse.google.com/cse.js?cx=7601d07de700f4ec5">
+    </script>
+    <div class="gcse-search"></div> -->
   </head>
   <body>
   </body>
