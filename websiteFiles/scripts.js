@@ -41,15 +41,7 @@ function addToPantry() {
     document.getElementById("itemConf").classList.add("hidden");
   }, 3000); 
 }
-form.addEventListener('submit', function(event) {
-  // Now this is completely standard and safe from deprecation warnings
-  event.preventDefault();
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    return;
-  }
-  addToPantry();
-});
+
 
 // Edit item in pantry when the "Edit" button is clicked
 document.addEventListener('click', function(event) {
@@ -135,6 +127,15 @@ function loadPantryFromCookie() {
 document.addEventListener("DOMContentLoaded", function() {
   loadPantryFromCookie();
   showPantry();
+});
+form.addEventListener('submit', function(event) {
+  // Now this is completely standard and safe from deprecation warnings
+  event.preventDefault();
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+  addToPantry();
 });
 
     // each user's pantry is going to be stored as a list/array of objects,
