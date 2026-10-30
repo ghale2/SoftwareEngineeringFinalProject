@@ -21,7 +21,7 @@ function sortbyDate(a,b) {
   var dateB = new Date(b.expiration);
   return dateA - dateB;
 }
-form = document.getElementById("itemForm");
+
 function addToPantry() {
   item1 = Object.create(protoItem);
   item1.name = document.getElementById("name").value;
@@ -128,6 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
   loadPantryFromCookie();
   showPantry();
 });
+form = document.getElementById("itemForm");
 form.addEventListener('submit', function(event) {
   // Now this is completely standard and safe from deprecation warnings
   event.preventDefault();
