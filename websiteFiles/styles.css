@@ -1,16 +1,68 @@
+/*Heading*/
 h1 {
-    color: #333;
+    color: black;
     font-size: 2.5em;
     text-align: center;
-    margin-bottom: 1em;
+    margin-bottom: 20px;
 }
 
+/*Subheading*/
 h2 {
-    color: #555;
+    color: gray;
     font-size: 1.5em;
     text-align: center;
-    margin-bottom: 1em;
+    margin-bottom: 30px;
 }
+
+/*searching recipes button*/
+#add {
+    background-color: darkgreen;
+    color: white;
+    padding: 7px;
+    border-radius: 8px;
+}
+
+/*edit the pantry button*/ 
+#searchButton {
+    background-color: darkblue;
+    color: white;
+    padding: 7px;
+    border-radius: 8px;
+}
+
+/*items on pantry*/
+#pantryList li {
+    background-color: lightgray;
+    color: black;
+    font-size: 14px;
+    padding: 15px;
+    margin-bottom: 15px;
+    : border1px solid gray  ;
+    border-radius: 8px;
+    list-style: none;
+    
+}
+
+/*pantry list shadowbox*/
+#pantryList {
+    padding: 0;
+    margin: 10px auto;
+    list-style: none;
+    max-width: 600px;
+    
+}
+
+/*above pantry text*/
+label {
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: gray;
+    font-size: 14px;
+    
+    
+}
+
 .hidden {
     display: none;
 }
