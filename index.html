@@ -1,6 +1,6 @@
 <html lang="en">
   <link rel="stylesheet" href="websiteFiles/styles.css" />
-  <script src="websiteFiles/scripts.js"></script>
+  <script defer src="websiteFiles/scripts.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>This is the pantry tracker website home page.</title>
@@ -11,7 +11,6 @@
     <!-- <input type="text" id="itemInput" placeholder="Enter an ingredient" /> -->
 
     <button id="add" onclick="window.location.href='websitePages/addItem.html'">Alter Pantry</button>
-    <button id="remove" onclick="removeItem()">Remove Item</button>
     <button id="searchButton" onclick="searchRecipes()">Search Recipes</button>
     <label><strong>This is what you currently have in your pantry/fridge:</strong></label>
     <ul id="pantryList"></ul>
