@@ -85,7 +85,19 @@ function showPantry() {
   pantryList.innerHTML = "";
   for (var i = 0; i < pantry.length; i++) {
     var li = document.createElement("li");
-    li.innerHTML = pantry[i].name + " - " + pantry[i].quantity + " - " + pantry[i].expiration + " <button class='remove'>Remove</button> <button class='edit'>Edit</button>";
+    currentPage = window.location.pathname.split("/").pop();
+    if (currentPage === "addItem.html") {
+      li.innerHTML = pantry[i].name + " - " + pantry[i].quantity + " - " + pantry[i].expiration + " <button class='remove'>Remove</button> <button class='edit'>Edit</button>";
+    }
+    else{
+      li.innerHTML = pantry[i].name + " - " + pantry[i].quantity + " - " + pantry[i].expiration;
+    }
+    if (pantry[i].isOpened) {
+      li.classList.add("opened");
+    }
+    if (pantry[i].expiration - date.toISOString().split('T')[0] < 0) {
+      li.classList.add("expired");
+    }
     pantryList.appendChild(li);
   }
   console.log("Pantry displayed: " + JSON.stringify(pantry));
@@ -122,11 +134,26 @@ function loadPantryFromCookie() {
     document.getElementById("cookieLoadConf").classList.add("hidden");
   }, 3000); 
 }
-
+function remindExpired() {
+  var today = new Date();
+  var expiredItems = pantry.filter(item => item.expiration && new Date(item.expiration) < today);
+  if (expiredItems.length > 0) {
+    alert("The following items have expired:\n" + expiredItems.map(item => item.name).join("\n"));
+  }
+}
+function remindExpiringSoon() {
+  var today = new Date();
+  var expiringSoonItems = pantry.filter(item => item.expiration && new Date(item.expiration) < new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000));
+  if (expiringSoonItems.length > 0) {
+    alert("The following items are expiring soon:\n" + expiringSoonItems.map(item => item.name).join("\n"));
+  }
+}
 // STARTUP FUNCTIONS
 document.addEventListener("DOMContentLoaded", function() {
   loadPantryFromCookie();
   showPantry();
+  remindExpired();
+  remindExpiringSoon();
 });
 try {
   form = document.getElementById("itemForm");
@@ -143,6 +170,8 @@ try {
 catch (error) {
   console.log("No form found on this page, skipping form event listener setup.");
 }
+
+
 
     // each user's pantry is going to be stored as a list/array of objects,
    //  where each object has keys for the item name, quantity, expiration date, category, notes, and opened status.
