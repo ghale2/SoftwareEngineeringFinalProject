@@ -128,16 +128,21 @@ document.addEventListener("DOMContentLoaded", function() {
   loadPantryFromCookie();
   showPantry();
 });
-form = document.getElementById("itemForm");
-form.addEventListener('submit', function(event) {
-  // Now this is completely standard and safe from deprecation warnings
-  event.preventDefault();
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    return;
-  }
-  addToPantry();
-});
+try {
+  form = document.getElementById("itemForm");
+  form.addEventListener('submit', function(event) {
+    // Now this is completely standard and safe from deprecation warnings
+    event.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    addToPantry();
+  });
+}
+catch (error) {
+  console.log("No form found on this page, skipping form event listener setup.");
+}
 
     // each user's pantry is going to be stored as a list/array of objects,
    //  where each object has keys for the item name, quantity, expiration date, category, notes, and opened status.

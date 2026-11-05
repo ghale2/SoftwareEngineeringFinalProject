@@ -37,7 +37,7 @@ h2 {
     font-size: 14px;
     padding: 15px;
     margin-bottom: 15px;
-    : border1px solid gray  ;
+    border: 1px solid gray;
     border-radius: 8px;
     list-style: none;
     
