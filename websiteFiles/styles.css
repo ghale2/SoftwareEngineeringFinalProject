@@ -1,3 +1,45 @@
+/*Background Homepage*/
+body {
+    background-color: beige;
+    font-family: Arial, sans-serif;
+}
+
+/*Main box*/
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/*defferent section boxes*/
+section {
+    background-color: ivory;
+    padding: 30px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    text-align: center;
+    min-height: 250px;
+}
+
+/*layout*/
+@media (max-width: 600px) {
+    main{
+        grid-template-columns: 1fr;
+    }
+    main section:last-child {
+        gris-column: 1;
+    }
+}
+
+/*to have inventory on bottom*/
+main section:last-child {
+    grid-column: 1 / 3;
+    min-height: 300px;
+}
+
 /*Heading*/
 h1 {
     color: black;
@@ -8,26 +50,28 @@ h1 {
 
 /*Subheading*/
 h2 {
-    color: gray;
+    color: black;
     font-size: 1.5em;
     text-align: center;
     margin-bottom: 30px;
 }
 
-/*searching recipes button*/
+/*edit the pantry button*/
 #add {
     background-color: darkgreen;
     color: white;
     padding: 7px;
     border-radius: 8px;
+    cursor: pointer;
 }
 
-/*edit the pantry button*/ 
+/*searching recipes button*/
 #searchButton {
     background-color: darkblue;
     color: white;
     padding: 7px;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 /*items on pantry*/
@@ -36,11 +80,11 @@ h2 {
     color: black;
     font-size: 14px;
     padding: 15px;
-    margin-bottom: 15px;
+    margin: 15px auto;
     border: 1px solid gray;
     border-radius: 8px;
     list-style: none;
-    
+    max-width: 1000px;
 }
 
 /*pantry list shadowbox*/
@@ -48,19 +92,16 @@ h2 {
     padding: 0;
     margin: 10px auto;
     list-style: none;
-    max-width: 600px;
-    
+    max-width: 1000px;
 }
 
 /*above pantry text*/
 label {
     display: block;
-    margin-top: 30px;
+    margin-top: 10px;
     margin-bottom: 10px;
     color: gray;
     font-size: 14px;
-    
-    
 }
 
 .hidden {
