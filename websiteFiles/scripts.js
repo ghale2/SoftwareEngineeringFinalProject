@@ -10,8 +10,12 @@ function searchRecipes() {
     alert("Your pantry is empty. Add some items first.");
     return;
   }
-  searchTerm = ("site:allrecipes.com "+pantry[0].name);
-  var searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(searchTerm);
+  var searchUrl = "https://www.allrecipes.com/search?q=" + pantry[0].name;
+  if (pantry.length > 1) {
+    searchUrl += "+" + pantry[1].name;
+  }
+  //searchTerm = ("site:allrecipes.com "+pantry[0].name);
+  //var searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(searchTerm);
   window.open(searchUrl, "_blank");
 }
 function sortbyDate(a,b) {
