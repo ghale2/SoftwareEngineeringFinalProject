@@ -126,7 +126,7 @@ form label {
 }
 
 /*for inputs*/
-form input: not(type="checkbox"]),
+form input:not(type="checkbox"),
 form select,
 form textarea {
     width: 100%;
@@ -149,7 +149,7 @@ form button {
 }
 
 /*for pointer on button*/
-form button: hover {
+form button:hover {
     background-color: green; 
 }
 
