@@ -1,4 +1,3 @@
-/*FOR HOME PAGE*/
 /*Background Homepage*/
 body {
     background-color: beige;
@@ -31,7 +30,7 @@ section {
         grid-template-columns: 1fr;
     }
     main section:last-child {
-        grid-column: 1;
+        gris-column: 1;
     }
 }
 
@@ -79,21 +78,21 @@ h2 {
 #pantryList li {
     background-color: lightgray;
     color: black;
-    font-size: 16px;
-    padding: 25px;
-    margin: 15px 0;
+    font-size: 14px;
+    padding: 15px;
+    margin: 15px auto;
     border: 1px solid gray;
     border-radius: 8px;
     list-style: none;
-    box-sizing: border-box;
+    max-width: 1000px;
 }
 
 /*pantry list shadowbox*/
 #pantryList {
     padding: 0;
-    margin: 20px auto;
+    margin: 10px auto;
     list-style: none;
-    width: 100%;
+    max-width: 1000px;
 }
 
 /*above pantry text*/
