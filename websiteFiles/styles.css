@@ -164,3 +164,13 @@ form button: hover {
 .expired {
     color: #cc0000;
 }
+
+/* Hide the second field by default */
+.conditional-field {
+  display: block;
+}
+
+/* Show it when the checkbox is checked */
+label:has(#isOpened:checked) + .conditional-field {
+  display: block;
+}

@@ -1,5 +1,5 @@
 pantry = [];
-const protoItem = {name: "", quantity: 0, expiration: "", category: "", notes: "", isOpened: false};
+const protoItem = {name: "", quantity: 0, expiration: "", category: "", notes: "", isOpened: false, dateOpened: ""};
 date = new Date();
 //ingredients = [];
 //ingredients.push("chicken");
@@ -12,7 +12,10 @@ function searchRecipes() {
   }
   var searchUrl = "https://www.allrecipes.com/search?q=" + pantry[0].name;
   if (pantry.length > 1) {
-    searchUrl += "+" + pantry[1].name;
+    searchUrl += (" " + pantry[1].name);
+  }
+  if (pantry.length > 2) {
+    searchUrl += (" " + pantry[2].name);
   }
   //searchTerm = ("site:allrecipes.com "+pantry[0].name);
   //var searchUrl = "https://www.google.com/search?q=" + encodeURIComponent(searchTerm);
@@ -34,6 +37,8 @@ function addToPantry() {
   item1.category = document.getElementById("category").value;
   item1.notes = document.getElementById("notes").value;
   item1.isOpened = document.getElementById("isOpened").checked;
+  item1.dateOpened = document.getElementById("dateOpened").value;
+
   console.log(item1);
   pantry.push(item1);
   pantry.sort(sortbyDate);
@@ -71,6 +76,7 @@ document.addEventListener('click', function(event) {
       document.getElementById("category").value = item.category;
       document.getElementById("notes").value = item.notes;
       document.getElementById("isOpened").checked = item.isOpened;
+      document.getElementById("dateOpened").value = item.dateOpened;
       // Store the index of the item being edited
       form.dataset.editIndex = index;
     }
@@ -99,7 +105,7 @@ function showPantry() {
     if (pantry[i].isOpened) {
       li.classList.add("opened");
     }
-    if (pantry[i].expiration - date.toISOString().split('T')[0] < 0) {
+    if (pantry[i].expiration - new Date() < 0 || pantry[i].dateOpened - new Date() < 0) {{
       li.classList.add("expired");
     }
     pantryList.appendChild(li);
@@ -147,7 +153,7 @@ function remindExpired() {
 }
 function remindExpiringSoon() {
   var today = new Date();
-  var expiringSoonItems = pantry.filter(item => item.expiration && new Date(item.expiration) < new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000));
+  var expiringSoonItems = pantry.filter(item => item.expiration && (today - new Date(item.expiration)) / (7 * 24 * 60 * 60 * 1000) < 30 && new Date(item.expiration) < today); 
   if (expiringSoonItems.length > 0) {
     alert("The following items are expiring soon:\n" + expiringSoonItems.map(item => item.name).join("\n"));
   }
@@ -158,22 +164,23 @@ document.addEventListener("DOMContentLoaded", function() {
   showPantry();
   remindExpired();
   remindExpiringSoon();
-});
-try {
-  form = document.getElementById("itemForm");
-  form.addEventListener('submit', function(event) {
-    // Now this is completely standard and safe from deprecation warnings
-    event.preventDefault();
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
+  try {
+    form = document.getElementById("itemForm");
+    form.addEventListener('submit', function(event) {
+      // Now this is completely standard and safe from deprecation warnings
+      event.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      addToPantry();
+      });
     }
-    addToPantry();
-  });
-}
-catch (error) {
-  console.log("No form found on this page, skipping form event listener setup.");
-}
+  catch (error) {
+    console.log("No form found on this page, skipping form event listener setup.");
+  }
+});
+
 
 
 
@@ -182,3 +189,4 @@ catch (error) {
   //  The list will be stored in a cookie, and the cookie will be updated whenever
  //  the user adds or removes an item from their pantry. This will allow the user to have a persistent pantry across sessions,
 //  so that the user's pantry is saved for future visits to the website.
+}
