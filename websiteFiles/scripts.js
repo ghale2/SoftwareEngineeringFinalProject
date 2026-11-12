@@ -105,7 +105,7 @@ function showPantry() {
     if (pantry[i].isOpened) {
       li.classList.add("opened");
     }
-    if (pantry[i].expiration - new Date() < 0 || pantry[i].dateOpened - new Date() < 0) {{
+    if (pantry[i].expiration - new Date() < 0 || pantry[i].dateOpened - new Date() < 0){
       li.classList.add("expired");
     }
     pantryList.appendChild(li);
@@ -189,4 +189,3 @@ document.addEventListener("DOMContentLoaded", function() {
   //  The list will be stored in a cookie, and the cookie will be updated whenever
  //  the user adds or removes an item from their pantry. This will allow the user to have a persistent pantry across sessions,
 //  so that the user's pantry is saved for future visits to the website.
-}

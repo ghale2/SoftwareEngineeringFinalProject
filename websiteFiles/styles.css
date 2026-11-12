@@ -104,6 +104,56 @@ label {
     font-size: 14px;
 }
 
+/*FOR ADDING ITEMS PAGE*/
+
+/*add item pg*/
+form {
+    background-color: beige;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 30px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+
+/*for boxes*/
+form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-size: 16px
+}
+
+/*for inputs*/
+form input:not(type="checkbox"),
+form select,
+form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid gray;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/*for the buttons*/
+form button {
+    background-color: darkgreen;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15ps;
+}
+
+/*for pointer on button*/
+form button:hover {
+    background-color: green; 
+}
+
+
+
 .hidden {
     display: none;
 }
