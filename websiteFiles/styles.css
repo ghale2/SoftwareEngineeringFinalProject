@@ -30,7 +30,7 @@ section {
         grid-template-columns: 1fr;
     }
     main section:last-child {
-        gris-column: 1;
+        grid-column: 1;
     }
 }
 
@@ -158,12 +158,13 @@ form button:hover {
     display: none;
 }
 .expireSoon {
-    border: 4px solid #e05e07 !important;
+    border: 4px solid #d5e007 !important;
 }
 .opened {
-    border: 4px solid #e05e07 !important;
+    border: 4px solid #d5e007 !important;
 }
 .expired {
+    border: 4px solid #cc0000 !important;
     color: #cc0000 !important;
 }
 

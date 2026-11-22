@@ -10,6 +10,11 @@ function searchRecipes() {
     alert("Your pantry is empty. Add some items first.");
     return;
   }
+  var validItems = pantry.filter(item => !(new Date(item.expiration) < new Date()));
+  if (validItems.length === 0) {
+    alert("Your pantry has no valid items. Your items may be expired.");
+    return;
+  }
   var searchUrl = "https://www.allrecipes.com/search?q=" + pantry[0].name;
   if (pantry.length > 1) {
     searchUrl += (" " + pantry[1].name);
@@ -167,7 +172,7 @@ function remindExpired() {
 }
 function remindExpiringSoon() {
   var today = new Date();
-  var expiringSoonItems = pantry.filter(item => item.expiration && (today - new Date(item.expiration)) / (7 * 24 * 60 * 60 * 1000) < 30 && new Date(item.expiration) < today); 
+  var expiringSoonItems = pantry.filter(item => item.expiration && (new Date(item.expiration.replace(/-/g, '\/')) - today) / (7 * 24 * 60 * 60 * 1000) < 30 && new Date(item.expiration.replace(/-/g, '\/')) > today); 
   if (expiringSoonItems.length > 0) {
     alert("The following items are expiring soon:\n" + expiringSoonItems.map(item => item.name).join("\n"));
   }
