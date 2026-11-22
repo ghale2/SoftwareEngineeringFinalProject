@@ -53,6 +53,7 @@ function addToPantry() {
 
 
 // Edit item in pantry when the "Edit" button is clicked
+/*
 document.addEventListener('click', function(event) {
   if (event.target.className === 'edit') {
     let li = event.target.parentNode;
@@ -61,11 +62,17 @@ document.addEventListener('click', function(event) {
     
   }
 });
+*/
 // Remove item from pantry when the "Remove" button is clicked
 document.addEventListener('click', function(event) {
   let li = event.target.parentNode;
   let ul = li.parentNode;
   let index = Array.from(ul.children).indexOf(li);
+  if (event.target.className === 'remove' || event.target.className === 'edit') {
+    if(!window.confirm("Are you sure you want to remove/edit this item?")) {
+      return;
+    }
+  }
   if (event.target.className === 'edit') {
     if (index !== -1) {
       var item = pantry[index];
@@ -102,11 +109,18 @@ function showPantry() {
     else{
       li.innerHTML = pantry[i].name + " - " + pantry[i].quantity + " - " + pantry[i].expiration;
     }
+    //console.log("Today's date: " + new Date() + ", Item expiration date: " + new Date(pantry[i].expiration.replace(/-/g, '\/')) + ", Item opened date: " + new Date(pantry[i].dateOpened));
     if (pantry[i].isOpened) {
       li.classList.add("opened");
+      li.innerHTML += " (Opened on: " + pantry[i].dateOpened + ", may expire soon)";
     }
-    if (pantry[i].expiration - new Date() < 0 || pantry[i].dateOpened - new Date() < 0){
+    if (new Date(pantry[i].expiration.replace(/-/g, '\/')) < new Date() /*|| (new Date() - new Date(pantry[i].dateOpened.replace(/-/g, '\/'))) / (24 * 60 * 60 * 1000) > 14*/){
       li.classList.add("expired");
+      li.innerHTML += " (Expired)";
+    }
+    if (new Date(pantry[i].expiration.replace(/-/g, '\/')) - new Date() < 30 * 24 * 60 * 60 * 1000 && new Date(pantry[i].expiration.replace(/-/g, '\/')) > new Date()) {
+      li.classList.add("expireSoon");
+      li.innerHTML += " (Expiring soon)";
     }
     pantryList.appendChild(li);
   }
