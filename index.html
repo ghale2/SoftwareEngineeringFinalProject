@@ -27,7 +27,11 @@
 
             <section>
                <h2>Your inventory</h2>
-    <label><strong>Current items in your pantry/fridge:</strong></label>
+    <label id="pantryCount"><strong>Current items in your pantry/fridge:</strong></label>
+    <script>
+      var pantryCount = pantry.length;
+      document.getElementById("pantryCount").textContent += " " + pantryCount;
+    </script>
     <ul id="pantryList"></ul>
           </section>
         </main>
